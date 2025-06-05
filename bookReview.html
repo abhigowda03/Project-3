@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Review Community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset and base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            color: #222;
+            line-height: 1.6;
+        }
+        header {
+            background: #4a90e2;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 24px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: #4a90e2;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+        }
+        h1, h2, h3 {
+            color: #4a90e2;
+            margin-bottom: 12px;
+        }
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .book-card {
+            background: #f1f8ff;
+            border-radius: 7px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(74,144,226,0.07);
+            transition: transform 0.2s;
+        }
+        .book-card:hover {
+            transform: translateY(-4px) scale(1.03);
+        }
+        .book-cover {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .review-form label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        .review-form input, .review-form textarea, .review-form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .review-form button {
+            margin-top: 18px;
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .review-form button:hover {
+            background: #357ab8;
+        }
+        .reviews {
+            margin-top: 32px;
+        }
+        .review {
+            background: #f7f7f7;
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+        .review .reviewer {
+            font-weight: bold;
+            color: #357ab8;
+        }
+        .contact-form label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .contact-form button {
+            margin-top: 18px;
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover {
+            background: #357ab8;
+        }
+        .faq, .testimonials {
+            margin-top: 40px;
+        }
+        .faq-item {
+            margin-bottom: 18px;
+        }
+        .testimonial {
+            background: #e8f4fd;
+            border-left: 5px solid #4a90e2;
+            padding: 14px 20px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+        }
+        .testimonial .user {
+            font-weight: bold;
+            color: #357ab8;
+        }
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            margin-top: 40px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 8px; }
+            nav a { padding: 12px 8px; font-size: 0.98rem; }
+            .book-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <h1>Book Review Community</h1>
+        <p>Discover, Review, and Share Your Favorite Books!</p>
+    </header>
+
+    <!-- ================ NAVIGATION ================ -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#books">Books</a>
+        <a href="#review">Submit Review</a>
+        <a href="#faq">FAQ</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ================ HOME SECTION ================ -->
+    <div class="container" id="home">
+        <h2>Welcome to Book Review Community</h2>
+        <p>
+            Your one-stop destination to find honest book reviews, share your thoughts, and connect with fellow book lovers!
+        </p>
+        <ul>
+            <li>Browse our curated list of books.</li>
+            <li>Read reviews from our passionate community.</li>
+            <li>Submit your own reviews and rate books.</li>
+            <li>Contact us for suggestions or support.</li>
+        </ul>
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80" alt="Books" style="width:100%;border-radius:8px;margin-top:20px;">
+    </div>
+
+    <!-- ================ ABOUT SECTION ================ -->
+    <div class="container" id="about">
+        <h2>About Us</h2>
+        <p>
+            <b>Book Review Community</b> was founded in 2025 by a group of avid readers who wanted to create a welcoming space for book lovers to share their opinions and discover new reads. Our mission is to foster a vibrant community where everyone feels empowered to express their thoughts, regardless of genre or background.
+        </p>
+        <h3>Our Team</h3>
+        <ul>
+            <li><b>Alex Morgan</b> - Founder & Editor-in-Chief</li>
+            <li><b>Sophia Lee</b> - Community Manager</li>
+            <li><b>Ravi Patel</b> - Technical Lead</li>
+            <li><b>Maria Gonzalez</b> - Content Curator</li>
+        </ul>
+        <h3>Our Values</h3>
+        <ol>
+            <li>Honesty and Integrity in Reviews</li>
+            <li>Respect for All Opinions</li>
+            <li>Encouragement of Diverse Voices</li>
+            <li>Promotion of Reading Culture</li>
+        </ol>
+    </div>
+
+    <!-- ================ BOOK LIST SECTION ================ -->
+    <div class="container" id="books">
+        <h2>Book List</h2>
+        <div class="book-list">
+            <!-- Book 1 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Atomic Habits</h3>
+                <p><b>Author:</b> James Clear</p>
+                <p><b>Genre:</b> Self-help</p>
+                <p>Transform your habits and your life with this powerful guide to making small changes for big results.</p>
+            </div>
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Hobbit</h3>
+                <p><b>Author:</b> J.R.R. Tolkien</p>
+                <p><b>Genre:</b> Fantasy</p>
+                <p>Join Bilbo Baggins on an epic adventure through Middle-Earth in this timeless classic.</p>
+            </div>
+            <!-- Book 3 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>To Kill a Mockingbird</h3>
+                <p><b>Author:</b> Harper Lee</p>
+                <p><b>Genre:</b> Fiction</p>
+                <p>A profound story of justice and morality set in the American South.</p>
+            </div>
+            <!-- Book 4 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1463320898484-cdee8141c787?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>1984</h3>
+                <p><b>Author:</b> George Orwell</p>
+                <p><b>Genre:</b> Dystopian</p>
+                <p>A chilling vision of a totalitarian future that still resonates today.</p>
+            </div>
+            <!-- Book 5 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Pride and Prejudice</h3>
+                <p><b>Author:</b> Jane Austen</p>
+                <p><b>Genre:</b> Romance</p>
+                <p>The witty and romantic tale of Elizabeth Bennet and Mr. Darcy.</p>
+            </div>
+            <!-- Book 6 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1476958526483-36efcaa80aa4?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Alchemist</h3>
+                <p><b>Author:</b> Paulo Coelho</p>
+                <p><b>Genre:</b> Adventure</p>
+                <p>Follow Santiago on his journey to discover his personal legend.</p>
+            </div>
+            <!-- Book 7 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Educated</h3>
+                <p><b>Author:</b> Tara Westover</p>
+                <p><b>Genre:</b> Memoir</p>
+                <p>A memoir about family, loss, and the struggle for a better future.</p>
+            </div>
+            <!-- Book 8 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Catcher in the Rye</h3>
+                <p><b>Author:</b> J.D. Salinger</p>
+                <p><b>Genre:</b> Coming-of-age</p>
+                <p>Holden Caulfield's story of teenage angst and alienation.</p>
+            </div>
+            <!-- Book 9 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Becoming</h3>
+                <p><b>Author:</b> Michelle Obama</p>
+                <p><b>Genre:</b> Biography</p>
+                <p>The inspiring memoir of the former First Lady of the United States.</p>
+            </div>
+            <!-- Book 10 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Sapiens</h3>
+                <p><b>Author:</b> Yuval Noah Harari</p>
+                <p><b>Genre:</b> History</p>
+                <p>An exploration of the history and impact of Homo sapiens.</p>
+            </div>
+            <!-- Book 11 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1465101178521-c1a9136a3c5d?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Thinking, Fast and Slow</h3>
+                <p><b>Author:</b> Daniel Kahneman</p>
+                <p><b>Genre:</b> Psychology</p>
+                <p>Understand how our minds work and why we make the decisions we do.</p>
+            </div>
+            <!-- Book 12 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Great Gatsby</h3>
+                <p><b>Author:</b> F. Scott Fitzgerald</p>
+                <p><b>Genre:</b> Classic</p>
+                <p>The story of Jay Gatsby and his pursuit of the American dream.</p>
+            </div>
+            <!-- Book 13 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Brave New World</h3>
+                <p><b>Author:</b> Aldous Huxley</p>
+                <p><b>Genre:</b> Dystopian</p>
+                <p>A futuristic society controlled by technology and conditioning.</p>
+            </div>
+            <!-- Book 14 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Road</h3>
+                <p><b>Author:</b> Cormac McCarthy</p>
+                <p><b>Genre:</b> Post-apocalyptic</p>
+                <p>A father and son's journey through a devastated America.</p>
+            </div>
+            <!-- Book 15 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Little Women</h3>
+                <p><b>Author:</b> Louisa May Alcott</p>
+                <p><b>Genre:</b> Classic</p>
+                <p>The coming-of-age story of the March sisters.</p>
+            </div>
+            <!-- Book 16 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Harry Potter and the Sorcerer's Stone</h3>
+                <p><b>Author:</b> J.K. Rowling</p>
+                <p><b>Genre:</b> Fantasy</p>
+                <p>The magical beginning of Harry Potter's adventures at Hogwarts.</p>
+            </div>
+            <!-- Book 17 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1476958526483-36efcaa80aa4?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Book Thief</h3>
+                <p><b>Author:</b> Markus Zusak</p>
+                <p><b>Genre:</b> Historical Fiction</p>
+                <p>A young girl's life in Nazi Germany, narrated by Death.</p>
+            </div>
+            <!-- Book 18 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Fault in Our Stars</h3>
+                <p><b>Author:</b> John Green</p>
+                <p><b>Genre:</b> Young Adult</p>
+                <p>A touching love story of two teenagers with cancer.</p>
+            </div>
+            <!-- Book 19 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Gone Girl</h3>
+                <p><b>Author:</b> Gillian Flynn</p>
+                <p><b>Genre:</b> Thriller</p>
+                <p>A psychological thriller with twists and turns at every corner.</p>
+            </div>
+            <!-- Book 20 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1463320898484-cdee8141c787?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Girl on the Train</h3>
+                <p><b>Author:</b> Paula Hawkins</p>
+                <p><b>Genre:</b> Mystery</p>
+                <p>A gripping story of obsession, lies, and murder.</p>
+            </div>
+            <!-- Book 21 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Life of Pi</h3>
+                <p><b>Author:</b> Yann Martel</p>
+                <p><b>Genre:</b> Adventure</p>
+                <p>The survival story of a boy stranded at sea with a Bengal tiger.</p>
+            </div>
+            <!-- Book 22 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1465101178521-c1a9136a3c5d?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Memoirs of a Geisha</h3>
+                <p><b>Author:</b> Arthur Golden</p>
+                <p><b>Genre:</b> Historical Fiction</p>
+                <p>An enchanting tale of a young Japanese girl's journey to become a geisha.</p>
+            </div>
+            <!-- Book 23 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Kite Runner</h3>
+                <p><b>Author:</b> Khaled Hosseini</p>
+                <p><b>Genre:</b> Drama</p>
+                <p>A powerful story of friendship, betrayal, and redemption.</p>
+            </div>
+            <!-- Book 24 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Shining</h3>
+                <p><b>Author:</b> Stephen King</p>
+                <p><b>Genre:</b> Horror</p>
+                <p>A chilling tale set in an isolated hotel with dark secrets.</p>
+            </div>
+            <!-- Book 25 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Silent Patient</h3>
+                <p><b>Author:</b> Alex Michaelides</p>
+                <p><b>Genre:</b> Thriller</p>
+                <p>A psychological thriller about a woman's act of violence against her husband—and of the therapist obsessed with uncovering her motive.</p>
+            </div>
+            <!-- Book 26 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Where the Crawdads Sing</h3>
+                <p><b>Author:</b> Delia Owens</p>
+                <p><b>Genre:</b> Mystery</p>
+                <p>A coming-of-age story and a murder mystery set in the marshes of North Carolina.</p>
+            </div>
+            <!-- Book 27 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1476958526483-36efcaa80aa4?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Normal People</h3>
+                <p><b>Author:</b> Sally Rooney</p>
+                <p><b>Genre:</b> Contemporary</p>
+                <p>The complex relationship between two Irish teenagers as they grow into adulthood.</p>
+            </div>
+            <!-- Book 28 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>The Subtle Art of Not Giving a F*ck</h3>
+                <p><b>Author:</b> Mark Manson</p>
+                <p><b>Genre:</b> Self-help</p>
+                <p>A counterintuitive approach to living a good life.</p>
+            </div>
+            <!-- Book 29 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Rich Dad Poor Dad</h3>
+                <p><b>Author:</b> Robert Kiyosaki</p>
+                <p><b>Genre:</b> Personal Finance</p>
+                <p>The classic guide to financial literacy and wealth-building.</p>
+            </div>
+            <!-- Book 30 -->
+            <div class="book-card">
+                <img class="book-cover" src="https://images.unsplash.com/photo-1463320898484-cdee8141c787?auto=format&fit=crop&w=400&q=80" alt="Book Cover">
+                <h3>Man's Search for Meaning</h3>
+                <p><b>Author:</b> Viktor E. Frankl</p>
+                <p><b>Genre:</b> Psychology</p>
+                <p>A Holocaust survivor's reflections on finding purpose in life.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================ SUBMIT REVIEW SECTION ================ -->
+    <div class="container" id="review">
+        <h2>Submit Your Review</h2>
+        <form class="review-form">
+            <label for="book">Book Title</label>
+            <select id="book" name="book" required>
+                <option value="">--Select a Book--</option>
+                <option>Atomic Habits</option>
+                <option>The Hobbit</option>
+                <option>To Kill a Mockingbird</option>
+                <option>1984</option>
+                <option>Pride and Prejudice</option>
+                <option>The Alchemist</option>
+                <option>Educated</option>
+                <option>The Catcher in the Rye</option>
+                <option>Becoming</option>
+                <option>Sapiens</option>
+                <option>Thinking, Fast and Slow</option>
+                <option>The Great Gatsby</option>
+                <option>Brave New World</option>
+                <option>The Road</option>
+                <option>Little Women</option>
+                <option>Harry Potter and the Sorcerer's Stone</option>
+                <option>The Book Thief</option>
+                <option>The Fault in Our Stars</option>
+                <option>Gone Girl</option>
+                <option>The Girl on the Train</option>
+                <option>Life of Pi</option>
+                <option>Memoirs of a Geisha</option>
+                <option>The Kite Runner</option>
+                <option>The Shining</option>
+                <option>The Silent Patient</option>
+                <option>Where the Crawdads Sing</option>
+                <option>Normal People</option>
+                <option>The Subtle Art of Not Giving a F*ck</option>
+                <option>Rich Dad Poor Dad</option>
+                <option>Man's Search for Meaning</option>
+            </select>
+            <label for="reviewer">Your Name</label>
+            <input type="text" id="reviewer" name="reviewer" required>
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating" required>
+                <option value="">--Select Rating--</option>
+                <option>1 - Poor</option>
+                <option>2 - Fair</option>
+                <option>3 - Good</option>
+                <option>4 - Very Good</option>
+                <option>5 - Excellent</option>
+            </select>
+            <label for="review">Your Review</label>
+            <textarea id="review" name="review" rows="5" required></textarea>
+            <button type="submit">Submit Review</button>
+        </form>
+        <div class="reviews">
+            <h3>Recent Reviews</h3>
+            <!-- 30+ sample reviews for line count -->
+            <div class="review">
+                <span class="reviewer">Priya Sharma</span> on <b>The Alchemist</b> - <b>5/5</b>
+                <p>A beautiful story about dreams and destiny. Coelho's writing is magical and inspiring!</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">John Doe</span> on <b>1984</b> - <b>4/5</b>
+                <p>Chilling and thought-provoking. Orwell's vision of the future is hauntingly relevant.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Emily Rose</span> on <b>Pride and Prejudice</b> - <b>5/5</b>
+                <p>An all-time favorite! Austen's wit and insight into human nature are unmatched.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Rahul Verma</span> on <b>Sapiens</b> - <b>5/5</b>
+                <p>A fascinating journey through human history. Highly recommended for curious minds.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Anna Smith</span> on <b>The Hobbit</b> - <b>4/5</b>
+                <p>A delightful adventure! Tolkien's world-building is incredible.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Michael Lee</span> on <b>Atomic Habits</b> - <b>5/5</b>
+                <p>Practical and motivating. Helped me build better habits step by step.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Sara Kim</span> on <b>Becoming</b> - <b>5/5</b>
+                <p>Michelle Obama's story is so inspiring. Loved every page!</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">David Brown</span> on <b>To Kill a Mockingbird</b> - <b>5/5</b>
+                <p>A timeless classic. Everyone should read this at least once.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Lily Evans</span> on <b>Educated</b> - <b>4/5</b>
+                <p>Powerful memoir. Tara Westover's journey is unforgettable.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Chris Johnson</span> on <b>The Catcher in the Rye</b> - <b>3/5</b>
+                <p>Interesting perspective on teenage life, though not my favorite.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Nina Patel</span> on <b>The Great Gatsby</b> - <b>5/5</b>
+                <p>Gatsby's story is tragic and beautiful. Fitzgerald's prose is stunning.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Omar Khalid</span> on <b>Brave New World</b> - <b>4/5</b>
+                <p>A disturbing look at the future. Huxley's world feels eerily possible.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Jessica Lin</span> on <b>The Road</b> - <b>5/5</b>
+                <p>Heartbreaking and powerful. A must-read for fans of post-apocalyptic fiction.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Samuel Green</span> on <b>Little Women</b> - <b>4/5</b>
+                <p>Charming and inspiring. The March sisters are unforgettable.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Ava Turner</span> on <b>Harry Potter and the Sorcerer's Stone</b> - <b>5/5</b>
+                <p>The magic begins! Rowling's world is enchanting.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Tommy Brooks</span> on <b>The Book Thief</b> - <b>5/5</b>
+                <p>Unique narration and a touching story. Highly recommended.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Elena Garcia</span> on <b>The Fault in Our Stars</b> - <b>4/5</b>
+                <p>Emotional and beautifully written. Bring tissues!</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Peter Wang</span> on <b>Gone Girl</b> - <b>5/5</b>
+                <p>Couldn't put it down. Twists kept me guessing until the end.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Maya Singh</span> on <b>The Girl on the Train</b> - <b>4/5</b>
+                <p>Suspenseful and well-paced. Great mystery.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Lucas White</span> on <b>Life of Pi</b> - <b>5/5</b>
+                <p>Magical realism at its best. A story of survival and faith.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Isabella Rossi</span> on <b>Memoirs of a Geisha</b> - <b>4/5</b>
+                <p>Richly detailed and captivating. A window into another world.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Henry Adams</span> on <b>The Kite Runner</b> - <b>5/5</b>
+                <p>Deeply moving. A story of redemption and forgiveness.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Sophia Kim</span> on <b>The Shining</b> - <b>5/5</b>
+                <p>Terrifying and brilliant. King at his best.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Oliver Grant</span> on <b>The Silent Patient</b> - <b>4/5</b>
+                <p>Unpredictable and gripping. Loved the ending!</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Chloe Martin</span> on <b>Where the Crawdads Sing</b> - <b>5/5</b>
+                <p>Beautifully written. The marsh comes alive on every page.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Jack Evans</span> on <b>Normal People</b> - <b>4/5</b>
+                <p>Complex and real. Rooney captures emotions perfectly.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Emma Watson</span> on <b>The Subtle Art of Not Giving a F*ck</b> - <b>3/5</b>
+                <p>Refreshing perspective, though a bit repetitive.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Benjamin Lee</span> on <b>Rich Dad Poor Dad</b> - <b>5/5</b>
+                <p>Changed my view on money and investing. A must-read!</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Grace Hill</span> on <b>Man's Search for Meaning</b> - <b>5/5</b>
+                <p>Profound and life-changing. Frankl's insights are timeless.</p>
+            </div>
+            <div class="review">
+                <span class="reviewer">Mason Clark</span> on <b>Thinking, Fast and Slow</b> - <b>4/5</b>
+                <p>Dense but fascinating. Explains so much about human behavior.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================ FAQ SECTION ================ -->
+    <div class="container faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>How can I submit a book review?</h3>
+            <p>Simply go to the "Submit Review" section, fill out the form, and click "Submit Review". Your review will appear after moderation.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Can I review a book not listed?</h3>
+            <p>Currently, you can only review books from our list. To suggest a new book, please contact us!</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I contact the Book Review Community?</h3>
+            <p>Use the contact form in the "Contact" section or email us at info@bookreviewcommunity.com.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Are reviews moderated?</h3>
+            <p>Yes, all reviews are checked for respectful language and relevance before being published.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is this website free to use?</h3>
+            <p>Absolutely! Our community and all its features are completely free.</p>
+        </div>
+    </div>
+
+    <!-- ================ TESTIMONIALS SECTION ================ -->
+    <div class="container testimonials" id="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial">
+            <span class="user">Aditi Mehra</span>: "I love being part of this community! The reviews are honest and help me find my next read."
+        </div>
+        <div class="testimonial">
+            <span class="user">James Carter</span>: "Submitting my own reviews is so easy. I feel heard as a reader."
+        </div>
+        <div class="testimonial">
+            <span class="user">Li Wei</span>: "The book list is diverse and always up to date. Highly recommended for all book lovers!"
+        </div>
+        <div class="testimonial">
+            <span class="user">Fatima Noor</span>: "I discovered so many new authors here. The community is welcoming and supportive."
+        </div>
+        <div class="testimonial">
+            <span class="user">Carlos Silva</span>: "I appreciate the quick responses from the support team. Great website!"
+        </div>
+    </div>
+
+    <!-- ================ CONTACT SECTION ================ -->
+    <div class="container" id="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <h3>Connect with Us</h3>
+        <ul>
+            <li>Email: <a href="mailto:info@bookreviewcommunity.com">info@bookreviewcommunity.com</a></li>
+            <li>Twitter: <a href="https://twitter.com/bookreviewcommunity" target="_blank">@BookReviewCommunity</a></li>
+            <li>Instagram: <a href="https://instagram.com/bookreviewcommunity" target="_blank">@bookreviewcommunity</a></li>
+        </ul>
+    </div>
+
+    <!-- ================ FOOTER ================ -->
+    <footer>
+        &copy; 2025 Book Review Community. All rights reserved.
+    </footer>
+</body>
+</html>
